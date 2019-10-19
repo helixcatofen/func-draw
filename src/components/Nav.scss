@@ -1,6 +1,26 @@
 header{
     display: flex;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    justify-content: space-around;
+    background: white;
     nav{
-        background:black;
+        ul{ 
+            list-style: none;
+            padding:none;
+            margin: none;
+            li{
+                float: left;
+                padding: 10px;
+                a{
+                    text-decoration: none;
+                    color:#212121;
+                    
+                }
+            }
+        }
+
     }
 }

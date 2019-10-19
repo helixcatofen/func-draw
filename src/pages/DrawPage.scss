@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin:auto;
+    height: 100%;
+    padding-top:60px;
+    flex-flow:column wrap;
+    color:white;
+    h2{
+
+        font-weight: bolder;
+        font-size: 57px;
+        text-align: left;
+        color: #fff;
+        span{
+            font-style:italic;
+            font-weight: 500;
+        }
+
+    }
+    form{
+        width: 100%;
+        display: block;
+        input{ 
+            margin-top:20px;
+        }
+
+
+    }    
+}

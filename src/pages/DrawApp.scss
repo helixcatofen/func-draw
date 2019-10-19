@@ -1,0 +1,35 @@
+.color-btn{
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border:none;
+    border-radius: 2px;
+
+}
+.draw-form{
+    width: 100%;
+}
+.input-box{
+
+    background:white;
+    display: inline-flex;
+    width: 70px;
+    align-content: center;
+    justify-content: space-around;
+    padding:15px; 
+    border-radius: 10px;
+    input{
+        width:20px;
+        padding:0px;
+        box-shadow: none;
+        border-right:1px solid #212121;
+        
+    }
+}
+.flex-row{
+    display:flex;
+    justify-content: space-between;
+    input[type='submit']{
+        margin:0px;
+    }
+}
