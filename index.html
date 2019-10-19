@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Load the Paper.js library -->
+	<script type="text/javascript" src="js/paper/paper-full.js"></script>
+	<script type="text/javascript" src="js/math.min.js"></script>
+	<!-- Define inlined JavaScript -->
+	<script type="text/paperscript" src="shapeDrawer.js" data-paper-canvas="canvas-1"></script>
+
+	<!-- This styling is *REQUIRED* for the canvas to resize correctly! -->
+	<style>
+		html,
+		body {
+			margin: 0;
+			overflow: hidden;
+			height: 100%;
+		}
+
+		/* Scale canvas with resize attribute to full size */
+		canvas[resize] {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+
+	<!-- Extra styling -->
+	<style>
+		.app-header {
+			background-color: #eee;
+		}
+	</style>
+</head>
+<body>
+	<div class="app-header" display="block">
+		<h3>Function input</h3>
+		<input type="text" placeholder="enter a function" id="funcInput"></input>
+		<button type="button" id="buttonSubmit" onclick="drawFunc()">Submit</button>
+	</div>
+
+	<div class="canvas">
+		<canvas resize="true" hidpi="off" id="canvas-1" data-paper-scope="1" style="-webkit-user-drag: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" class=""></canvas>
+	</div>
+
+	<script>
+		const parser = math.parser()
+
+		function drawFunc() {
+			var funcOfXString = 'f(x) = ' + document.getElementById("funcInput").value;
+			console.log(funcOfXString);
+			parser.evaluate(funcOfXString);
+			func = parser.get('f');
+			console.log(func(5));
+			drawTrace(func, 50, 1);
+		}
+	</script>
+</body>
+</html>
