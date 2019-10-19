@@ -34,6 +34,8 @@
 	<div class="app-header" display="block">
 		<h3>Function input</h3>
 		<input type="text" placeholder="enter a function" id="funcInput"></input>
+		<input type="number" placeholder="line width" id="traceWidth"></input>
+		<input type="text" placeholder="hex color" id="traceColor"></input>
 		<button type="button" id="buttonSubmit" onclick="drawFunc()">Submit</button>
 	</div>
 
@@ -49,8 +51,11 @@
 			console.log(funcOfXString);
 			parser.evaluate(funcOfXString);
 			func = parser.get('f');
-			console.log(func(5));
-			drawTrace(func, 50, 1);
+
+			var color = document.getElementById("traceColor").value;
+			var width = document.getElementById("traceWidth").value;
+
+			drawTrace(func, 50, 1, color, width);
 		}
 	</script>
 </body>
