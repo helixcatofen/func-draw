@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { evaluate } from 'mathjs'
 
-import {
+import paper, {
+    Project,
     View,
     Layer,
     Group,
@@ -16,6 +17,7 @@ import {
 
 
 class CanvasDraw extends Component{
+    
 
     plotRange = 100; // define max value for function input x value
 
@@ -23,7 +25,7 @@ class CanvasDraw extends Component{
         var numPoints = this.plotRange / xGranularity; // calculate number of points to plot based on max x-coord value and x-coords interval
     
         var pixelScale = document.getElementById('canvas-1').offsetWidth / numPoints; // ratio between function range and canvas size
-    
+        console.log(pixelScale);
         var trace = new Path(); 
         trace.strokeColor = 'black';
     
@@ -50,6 +52,12 @@ class CanvasDraw extends Component{
         console.log(func(5));
         this.drawTrace(func, 50, 1);
     }
+    componentDidMount() {
+        window.addEventListener('load', this.handleLoad);
+    }
+    handleLoad=()=>{
+        paper.setup('canvas-1');
+    }
 
     render(){
         return(
@@ -62,7 +70,9 @@ class CanvasDraw extends Component{
                          
                     </canvas>
                 </div>
+
           </div>
+          
         );
         
     }
