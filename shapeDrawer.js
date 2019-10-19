@@ -3,13 +3,22 @@ var canvasWidth = document.getElementById('canvas-1').offsetWidth; // get canvas
 
 window.drawTrace = drawTrace; // register function in global scope so that it can be called from the main script
 
-function drawTrace(func, yOffset, xGranularity) {
+/**
+ *
+ * @param func callable function of x, returning numeric value for y
+ * @param yOffset distance of the x-axis of a trace from top of the canvas
+ * @param xGranularity step for x-value increment
+ * @param color HEX colour code for the function trace
+ * @param lineWidth width for the function trace
+ */
+function drawTrace(func, yOffset, xGranularity, color, traceWidth) {
     var numPoints = plotRange / xGranularity; // calculate number of points to plot based on max x-coord value and x-coords interval
 
     var pixelScale = canvasWidth / numPoints; // ratio between function range and canvas size
 
     var trace = new Path(); // graphical trace of math function
-    trace.strokeColor = 'black';
+    trace.strokeColor = color;
+    trace.strokeWidth = traceWidth;
 
     // plot points with equal x-intervals and y-value calculated from suplied function
     var i;
