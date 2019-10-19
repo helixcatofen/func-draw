@@ -16,7 +16,7 @@ import './styles/app.scss'
 export default function App() {
 
   return (
-    <div class="App">
+    <div className="App">
       <Nav></Nav>
       <Switch>
         <Route exact path="/" component={HomePage} />

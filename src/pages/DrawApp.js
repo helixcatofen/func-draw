@@ -2,17 +2,23 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { ChromePicker } from 'react-color'
 
+import Draw from '../components/Draw.js'
+
 import './DrawPage.scss'
 import './DrawApp.scss'
 
 class DrawApp extends Component {
-
+    
     state = {
         displayColorPicker: false,
         color:"#00000",
         size:1,
+        text:'',
       };
-    
+      constructor(props){
+        super(props);
+        this.drawEle = React.createRef();
+      }
       handleClick = () => {
         this.setState({ displayColorPicker: !this.state.displayColorPicker })
       };
@@ -22,6 +28,15 @@ class DrawApp extends Component {
       };
       handleChange = (color) =>{
         this.setState({ color: color.hex })
+      }
+      handleDraw=()=>{
+        this.drawEle.current.drawFunc(this.state.text);
+      }
+      changeFunction=(e)=>{
+        this.setState({text:e.target.value})
+      }
+      updateNumber=(e)=>{
+        this.setState({size:e.target.value})
       }
       
       
@@ -40,21 +55,21 @@ class DrawApp extends Component {
         }
 
         return (
-          <div class='container'> 
-            <div class='draw-form'>
+          <div className='container'> 
+            <div className='draw-form'>
                 <p>
                 <label>
                     Function:
                 </label>
-                <input type="text" value={this.state.value} />
+                <input type="text" value={this.state.text} onChange={this.changeFunction} />
                 
                 </p>
                 
 
-            <div class='flex-row'>
-                <input type="submit" value="Draw" />
-                <div class='input-box'>
-                    <input type="number" value={this.state.size}/>
+            <div className='flex-row'>
+                <input type="submit" value="Draw" onClick={ this.handleDraw } />
+                <div className='input-box'>
+                    <input type="number" value={this.state.size} onChange={this.updateNumber}/>
 
                     <button  onClick={ this.handleClick } style={{backgroundColor:this.state.color}}></button>
                         { this.state.displayColorPicker ? <div style={ popover }>
@@ -65,6 +80,9 @@ class DrawApp extends Component {
                 </div> 
             </div>
 
+            </div>
+            <div className='draw-container'>
+              <Draw ref={this.drawEle}></Draw>
             </div>
 
 
