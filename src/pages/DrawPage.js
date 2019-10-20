@@ -1,23 +1,32 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import {Redirect} from 'react-router'
 
 import './DrawPage.scss'
 
 class DrawPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '',
+                      redirect: false
+                    };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
+        this.setState({redirect: true});
     }
     updateName = (e) =>{
         this.setState({value:e.target.value});
     }
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={{
+                        pathname: '/draw/2',
+                        state: { name: this.state.value }
+                      }}
+                />
+        }
         return(
             <div className="container">
             <h2>

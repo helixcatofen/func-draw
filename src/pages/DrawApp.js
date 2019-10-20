@@ -15,6 +15,7 @@ class DrawApp extends Component {
         color:"#00000",
         size:1,
         text:'',
+        name:'', 
         actions:[
 
         ]
@@ -22,6 +23,9 @@ class DrawApp extends Component {
       constructor(props){
         super(props);
         this.drawEle = React.createRef();
+        this.state.name = this.props.location.state.name;
+        console.log(this.state.name);
+        
       }
       handleClick = () => {
         this.setState({ displayColorPicker: !this.state.displayColorPicker })
@@ -53,6 +57,9 @@ class DrawApp extends Component {
       }
       updateNumber=(e)=>{
         this.setState({size:e.target.value})
+      }
+      submitImg=(e)=>{
+        e.preventDefault();
       }
       
       
@@ -99,6 +106,16 @@ class DrawApp extends Component {
             </div>
             <div className='draw-container'>
               <Draw ref={this.drawEle}></Draw>
+            </div>
+
+            <div>
+
+              <form onSubmit={this.submitImg}>
+                <input type='submit' value='Share'>
+
+                </input>
+              </form>
+
             </div>
 
 
