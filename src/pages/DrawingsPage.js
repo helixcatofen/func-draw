@@ -1,16 +1,36 @@
 import React, { Component } from 'react'
 import DrawingCard from '../components/DrawingCard.js'
 import { Link } from 'react-router-dom'
-
+import $ from 'jquery'
 
 
 
 import './DrawPage.scss'
 import './DrawingsPage.scss'
 
+function queryDB(){
+    var data 
+    var settings = {
+        "async": false,
+        "crossDomain": true,
+        "dataType": "json",
+        "url": "https://pjgf4yqxo7.execute-api.eu-west-3.amazonaws.com/default/hackBackend?TableName=mainBackendTable",
+        "method": "GET",
+        "headers": {
+            'Content-Type': 'application/json',
+        }
+      }
+      
+      $.ajax(settings).done(function (response) {
+         data = response["Items"]
+      });
+      return data
+}
+
 class DrawingsPage extends Component {
 
     render() {
+        queryDB()
         var sampleDrawing = [
             {function: "x+1", color: "#00000", size: 1},
             {function: "x+1", color: "#f31b1b", size: "5"},
