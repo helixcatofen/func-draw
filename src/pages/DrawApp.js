@@ -7,6 +7,7 @@ import Draw from '../components/Draw.js'
 import './DrawPage.scss'
 import './DrawApp.scss'
 
+
 class DrawApp extends Component {
     
     state = {
@@ -14,6 +15,9 @@ class DrawApp extends Component {
         color:"#00000",
         size:1,
         text:'',
+        actions:[
+
+        ]
       };
       constructor(props){
         super(props);
@@ -30,7 +34,19 @@ class DrawApp extends Component {
         this.setState({ color: color.hex })
       }
       handleDraw=()=>{
-        this.drawEle.current.drawFunc(this.state.text);
+        this.state.actions.push({
+          function:this.state.text,
+          color:this.state.color,
+          size:this.state.size
+        })
+        this.drawEle.current.drawFunc(
+          this.state.text,
+          this.state.color,
+          this.state.size
+          
+          
+          );
+        console.log(this.state.actions);
       }
       changeFunction=(e)=>{
         this.setState({text:e.target.value})
