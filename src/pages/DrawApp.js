@@ -1,11 +1,44 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { ChromePicker } from 'react-color'
-
+import $ from 'jquery'
 import Draw from '../components/Draw.js'
 
 import './DrawPage.scss'
 import './DrawApp.scss'
+
+function postToDB(user, functions){
+  var data = {
+      "TableName": "mainBackendTable",
+      "Item": {
+          "drawingID": {
+              "S": user + functions
+          },
+          "user": {
+              "S": user
+          },
+          "functions": {
+              "S": functions  
+                  
+          }
+      }
+  }
+  var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://pjgf4yqxo7.execute-api.eu-west-3.amazonaws.com/default/hackBackend",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",   
+      },
+      "processData": false,
+      "data": JSON.stringify(data)
+    }
+    
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+    });
+}
 
 
 class DrawApp extends Component {
@@ -38,11 +71,9 @@ class DrawApp extends Component {
         this.setState({ color: color.hex })
       }
       handleDraw=()=>{
-        this.state.actions.push({
-          function:this.state.text,
-          color:this.state.color,
-          size:this.state.size
-        })
+        this.state.actions.push(
+          this.state.text+','+this.state.color+','+this.state.size
+        )
         this.drawEle.current.drawFunc(
           this.state.text,
           this.state.color,
@@ -60,7 +91,10 @@ class DrawApp extends Component {
       }
       submitImg=(e)=>{
         e.preventDefault();
+        postToDB(this.state.name, this.state.actions.join(';'))
       }
+      
+
       
       
       

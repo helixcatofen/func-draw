@@ -73,6 +73,9 @@ class CanvasDraw extends Component{
                 this.drawFunc(element.function, element.color, element.size);
             });
         }
+        console.log('====================================');
+        console.log(this.props.canvas || 'canvas-1');
+        console.log('====================================');
     
     }
 
