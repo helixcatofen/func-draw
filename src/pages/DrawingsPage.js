@@ -29,8 +29,36 @@ function queryDB(){
 
 class DrawingsPage extends Component {
 
+    state = []
+
+    processString=(string)=>{
+        var data = string.split(';');
+        var outData =[]
+        data.forEach(d=>{
+            var temp = d.split(',')
+            var row = {
+                function: temp[0], color: temp[1], size: temp[2]
+            }
+            outData.push(row);
+        })
+        
+        //console.log(data);
+        return outData;
+    }
+
     render() {
-        queryDB()
+        var data = queryDB()
+
+        var outData = [];
+        data.forEach(d => {
+            var  row = {
+                name:d['user']['S'],
+                file_name:d['drawingID']['S'],
+                data:this.processString(d['functions']['S']),
+            }
+            outData.push(row);
+        });
+        console.log(outData);
         var sampleDrawing = [
             {function: "x+1", color: "#00000", size: 1},
             {function: "x+1", color: "#f31b1b", size: "5"},
@@ -51,12 +79,12 @@ class DrawingsPage extends Component {
        
 
         return(
-            <div class='container'>
+            <div class=''>
                 <h1>
                     Latest Drawings
                 </h1>
                 <div className='cards-container'>
-                    {dummyData.map(el =>{
+                    {outData.map(el =>{
                         return(
                             <DrawingCard drawingData={el.data} name={el.name} fileName={el.file_name}>
 

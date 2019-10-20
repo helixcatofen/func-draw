@@ -92,6 +92,7 @@ class DrawApp extends Component {
       submitImg=(e)=>{
         e.preventDefault();
         postToDB(this.state.name, this.state.actions.join(';'))
+        alert('Great Success!')
       }
       
 

@@ -47,6 +47,11 @@ input[type='submit']{
     padding-top:60px;
     flex-flow:column wrap;
     color:white;
+    overflow-wrap: break-word;
+    h1{
+        width:100%;
+        display: block;
+    }
 }
 .btn-primary{
     background: #FFA142; 
