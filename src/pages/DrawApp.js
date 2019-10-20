@@ -105,7 +105,7 @@ class DrawApp extends Component {
 
             </div>
             <div className='draw-container'>
-              <Draw ref={this.drawEle}></Draw>
+              <Draw ref={this.drawEle} canvas='cnv-2'></Draw>
             </div>
 
             <div>

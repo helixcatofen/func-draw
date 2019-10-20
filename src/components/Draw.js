@@ -33,7 +33,7 @@ class CanvasDraw extends Component{
     drawTrace = (func, yOffset, xGranularity, color, traceWidth) => {
         var numPoints = this.plotRange / xGranularity; // calculate number of points to plot based on max x-coord value and x-coords interval
     
-        var pixelScale = document.getElementById('canvas-1').offsetWidth / numPoints; // ratio between function range and canvas size
+        var pixelScale = document.getElementById(this.props.canvas || 'canvas-1').offsetWidth / numPoints; // ratio between function range and canvas size
         
         var trace = new Path(); // graphical trace of math function
         trace.strokeColor = color;
@@ -67,7 +67,13 @@ class CanvasDraw extends Component{
         window.addEventListener('load', this.handleLoad);
     }
     handleLoad=()=>{
-        paper.setup('canvas-1');
+        paper.setup(this.props.canvas || 'canvas-1');
+        if(this.props.drawData){
+            this.props.drawData.forEach(element => {
+                this.drawFunc(element.function, element.color, element.size);
+            });
+        }
+    
     }
 
     render(){
@@ -76,7 +82,7 @@ class CanvasDraw extends Component{
             
           <div>
                 <div className="canvas">
-                    <canvas resize="true" hidpi="off" id="canvas-1" data-paper-scope="1">
+                    <canvas resize="true" hidpi="off" id={this.props.canvas || 'canvas-1'} data-paper-scope="1">
                          {/* style="-webkit-user-drag: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" class=""> */}
                          
                     </canvas>
