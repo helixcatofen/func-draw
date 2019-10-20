@@ -14,6 +14,9 @@ class DrawPage extends Component {
         alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
     }
+    updateName = (e) =>{
+        this.setState({value:e.target.value});
+    }
     render() {
         return(
             <div className="container">
@@ -23,7 +26,7 @@ class DrawPage extends Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                 Tell us your name:
-                <input type="text" value={this.state.value} />
+                <input type="text" value={this.state.value} onChange={this.updateName} />
                 </label>
                 <input type="submit" value="Begin" />
             </form>
