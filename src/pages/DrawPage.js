@@ -53,7 +53,7 @@ class DrawPage extends Component {
         this.setState({value:e.target.value});
     }
     render() {
-        postToDB("joan", "f(x),y,z")
+        
         if (this.state.redirect) {
             return <Redirect to={{
                         pathname: '/draw/2',
