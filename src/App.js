@@ -5,6 +5,8 @@ import HomePage from './pages/HomePage.js'
 import UserPage from './pages/DrawPage.js'
 import DrawApp from './pages/DrawApp.js'
 import DrawingsPage from './pages/DrawingsPage.js'
+import DrawingPage from './pages/DrawingPage.js'
+
 
 import { Link } from 'react-router-dom'
 
@@ -24,7 +26,7 @@ export default function App() {
         <Route exact path="/draw" component={UserPage} />
         <Route exact path="/draw/2" component={DrawApp} />
         <Route exact path="/drawings" component={DrawingsPage} />
-        <Route exact path="/drawing/:id" component={DrawApp} />
+        <Route exact path="/drawing/:id" component={DrawingPage} />
 
       </Switch>
 
